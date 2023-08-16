@@ -7,5 +7,5 @@ public interface ISmsRepository
 	public int CreateStudent(Student student);
 	public IEnumerable<Student> GetAllStudents();
 	public int CreateCourse(Course course);
-	public IEnumerable<Course> GetAllCourses ();
+	public IEnumerable<Course> GetAllCourses();
 }

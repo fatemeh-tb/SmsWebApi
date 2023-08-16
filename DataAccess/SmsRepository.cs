@@ -3,13 +3,15 @@ using DataDomain;
 
 namespace DataAccess;
 
-public class SmsRepository: ISmsRepository
+public class SmsRepository : ISmsRepository
 {
 	private readonly SmsDbContext _smsContext;
 
 	public SmsRepository()
 	{
 		_smsContext = new SmsDbContext();
+		_smsContext = new SqliteSmsDbContext();
+		_smsContext.Database.EnsureCreated();
 	}
 
 	public int CreateStudent(Student student)
@@ -39,7 +41,6 @@ public class SmsRepository: ISmsRepository
 			}).ToList();
 		return result;
 	}
-
 
 	public int CreateCourse(Course course)
 	{

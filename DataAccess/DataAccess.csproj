@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Context\Context.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Contrib.Autofac.DependencyInjection" Version="7.1.0" />
+    </ItemGroup>
+
 </Project>

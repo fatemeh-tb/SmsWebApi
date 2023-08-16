@@ -6,6 +6,6 @@ public class SqliteSmsDbContext: SmsDbContext
 {
 	protected override void OnConfiguring(DbContextOptionsBuilder options)
 	{
-		options.UseSqlite(@$"DataSource=sms.db;");
+		options.UseSqlite(@$"DataSource=smsdatabase.db;");
 	}
 }
