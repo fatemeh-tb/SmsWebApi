@@ -32,5 +32,24 @@ namespace StudentManagementSystemWebApi.Controllers
         {
             return _courseDataService.GetCourses();
         }
+        
+        [HttpGet("/Course/{id}")]
+        public Course GetCoursebyId(long id)
+        {
+            return _courseDataService.GetCourseById(id);
+        }
+        
+        
+        [HttpDelete("/deleteCourse/{id}")]
+        public int DeleteCourse(long id)
+        {
+            return _courseDataService.DeleteCourse(id);
+        }
+        
+        [HttpPut]
+        public bool UpdateCourse(CourseDto courseDto)
+        {
+            return _courseDataService.UpdateCourse(courseDto);
+        }
     }
 }

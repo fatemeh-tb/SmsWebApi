@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataDomain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Context;
 
@@ -8,4 +9,5 @@ public class SqliteSmsDbContext: SmsDbContext
 	{
 		options.UseSqlite(@$"DataSource=smsdatabase.db;");
 	}
+	
 }

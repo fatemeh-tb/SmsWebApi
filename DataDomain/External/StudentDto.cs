@@ -1,4 +1,6 @@
-﻿namespace DataDomain.External;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace DataDomain.External;
 
 public class StudentDto
 {
@@ -9,4 +11,5 @@ public class StudentDto
 	public string NationalCode { get; set; }
 	public string ParentName { get; set; }
 	public string Gender { get; set; }
+	public string ImageName { get; set; }
 }

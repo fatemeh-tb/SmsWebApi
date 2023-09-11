@@ -1,4 +1,6 @@
-﻿namespace DataDomain;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace DataDomain;
 
 public class Student
 {
@@ -9,5 +11,6 @@ public class Student
 	public string NationalCode { get; set; }
 	public string ParentName { get; set; }
 	public string Gender { get; set; }
-	public virtual ICollection<Course> Courses { get; set; }
+	public string ImageName { get; set; }
+	public virtual ICollection<CourseStudent> CourseStudent { get; set; }
 }
