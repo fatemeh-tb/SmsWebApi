@@ -6,12 +6,13 @@ namespace Context;
 
 public class SmsDbContext : DbContext
 {
-	public DbSet<FileViewModel> Students { get; set; }
+	public DbSet<Student> Students { get; set; }
 	public DbSet<Course> Courses { get; set; }
 	public DbSet<CourseStudent> CourseStudents { get; set; }
+
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
-		modelBuilder.Entity<Student>(entity => { entity.ToTable("Stuents"); });
+		modelBuilder.Entity<Student>(entity => { entity.ToTable("Students"); });
 		modelBuilder.Entity<Course>(entity => { entity.ToTable("Courses"); });
 
 		modelBuilder.Entity<CourseStudent>()

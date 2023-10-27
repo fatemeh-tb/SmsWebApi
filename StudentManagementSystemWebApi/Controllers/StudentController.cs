@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Context;
 using DataDomain;
 using DataDomain.External;
 using DataService;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace StudentManagementSystemWebApi.Controllers
 {
@@ -17,18 +13,19 @@ namespace StudentManagementSystemWebApi.Controllers
 	{
 		private readonly StudentDataService _studentDataService;
 		private readonly SmsDbContext _smsContext;
+		private IWebHostEnvironment _environment;
 
 
-		public StudentController(IWebHostEnvironment environment)
+		public StudentController(IHostingEnvironment  environment)
 		{
 			_studentDataService = new StudentDataService(environment);
 			_smsContext = new SmsDbContext();
 		}
 
 		[HttpPost]
-		public Task<int> AddStudent(FileViewModel model, IFormFile photo)
+		public int AddStudent(StudentDto model)
 		{
-			return _studentDataService.AddStudent(model, photo);
+			return _studentDataService.AddStudent(model);
 		}
 
 		[HttpGet("/students")]

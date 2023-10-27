@@ -20,14 +20,15 @@ public class StudentRepository
 			.Students
 			.Select(s => new Student()
 			{
-				Id = s.Student.Id,
-				FName = s.Student.FName,
-				LName = s.Student.LName,
-				Phone = s.Student.Phone,
-				NationalCode = s.Student.NationalCode,
-				ParentName = s.Student.ParentName,
-				Gender = s.Student.Gender,
-				CourseStudent = (ICollection<CourseStudent>)s.Student.CourseStudent.Select(p => new CourseStudent()
+				Id = s.Id,
+				FName = s.FName,
+				LName = s.LName,
+				Phone = s.Phone,
+				NationalCode = s.NationalCode,
+				ParentName = s.ParentName,
+				Gender = s.Gender,
+				imagePath = s.imagePath,
+				CourseStudent = (ICollection<CourseStudent>)s.CourseStudent.Select(p => new CourseStudent()
 				{
 					CoursesId = p.CoursesId,
 					Course = p.Course,
@@ -35,11 +36,11 @@ public class StudentRepository
 			});
 	}
 
-	public Task<int> CreateStudent(FileViewModel student)
+	public int CreateStudent(Student student)
 	{
 		
 		_smsContext.Students.Add(student);
-		return _smsContext.SaveChangesAsync();
+		return _smsContext.SaveChanges();
 	}
 
 	public IEnumerable<Student> GetAllStudents()
@@ -62,15 +63,16 @@ public class StudentRepository
 
 	public bool UpdateStudent(StudentDto studentDto)
 	{
-		var studentToUpdate = _smsContext.Students.FirstOrDefault(s => s.Student.Id == studentDto.Id);
+		var studentToUpdate = _smsContext.Students.FirstOrDefault(s => s.Id == studentDto.Id);
 		if (studentToUpdate is not null)
 		{
-			studentToUpdate.Student.FName = studentDto.FName;
-			studentToUpdate.Student.LName = studentDto.LName;
-			studentToUpdate.Student.ParentName = studentDto.ParentName;
-			studentToUpdate.Student.NationalCode = studentDto.NationalCode;
-			studentToUpdate.Student.Phone = studentDto.Phone;
-			studentToUpdate.Student.Gender = studentDto.Gender;
+			studentToUpdate.FName = studentDto.FName;
+			studentToUpdate.LName = studentDto.LName;
+			studentToUpdate.ParentName = studentDto.ParentName;
+			studentToUpdate.NationalCode = studentDto.NationalCode;
+			studentToUpdate.Phone = studentDto.Phone;
+			studentToUpdate.Gender = studentDto.Gender;
+			studentToUpdate.imagePath = studentDto.imagePath;
 		}
 
 		return _smsContext.SaveChanges() > 0;

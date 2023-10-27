@@ -1,23 +1,17 @@
-﻿using System.Collections;
-using System.Globalization;
-using Context;
-using DataAccess;
+﻿using DataAccess;
 using DataDomain;
 using DataDomain.External;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
+
 
 namespace DataService;
 
 public class StudentDataService
 {
 	private readonly StudentRepository _studentRepository;
-	private IWebHostEnvironment _environment;
+	private IHostingEnvironment  _environment;
 
-	public StudentDataService(IWebHostEnvironment environment)
+	public StudentDataService(IHostingEnvironment  environment)
 	{
 		_studentRepository = new StudentRepository();
 		_environment = environment;
@@ -33,34 +27,18 @@ public class StudentDataService
 		return _studentRepository.createCourseStudent(coursestudent);
 	}
 
-	public async Task<int> AddStudent(FileViewModel model,IFormFile photo)
+	public int  AddStudent(StudentDto model)
 	{
-		if (photo == null || photo.Length == 0)
-		{
-			Console.WriteLine("Eroor");
-		}
-
-		var path = Path.Combine(_environment.WebRootPath, "Uploads/profilepics", photo.FileName);
-		using (FileStream stream = new FileStream(path, FileMode.Create))
-		{
-			await photo.CopyToAsync(stream);
-			stream.Close();
-		}
-
-		model.Student.ImageName = photo.FileName;
-
-		if (model != null)
-		{
-			var student = new Student();
-			student.FName = model.Student.FName;
-			student.LName = model.Student.LName;
-			student.Phone = model.Student.Phone;
-			student.ParentName = model.Student.ParentName;
-			student.NationalCode = model.Student.NationalCode;
-			student.Gender = model.Student.Gender;
-		}
-		return await _studentRepository.CreateStudent(model);
-
+		var student = new Student();
+		
+		student.FName = model.FName;
+		student.LName = model.LName;
+		student.Phone = model.Phone;
+		student.ParentName = model.ParentName;
+		student.NationalCode = model.NationalCode;
+		student.Gender = model.Gender;
+		student.imagePath = model.imagePath;
+		return _studentRepository.CreateStudent(student);
 	}
 
 	public IEnumerable<Student> GetStudents()
