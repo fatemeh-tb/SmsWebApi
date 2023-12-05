@@ -2,6 +2,7 @@
 using DataDomain;
 using DataDomain.External;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess;
 
@@ -38,7 +39,6 @@ public class StudentRepository
 
 	public int CreateStudent(Student student)
 	{
-		
 		_smsContext.Students.Add(student);
 		return _smsContext.SaveChanges();
 	}
@@ -84,4 +84,12 @@ public class StudentRepository
 		_smsContext.CourseStudents.Add(courseStudent);
 		return _smsContext.SaveChanges();
 	}
+
+	public int RemoveCourseStudentRelations(CourseStudent courseStudent)
+	{
+		_smsContext.Attach(courseStudent);
+		_smsContext.Remove(courseStudent);
+		return _smsContext.SaveChanges();
+	}
+	
 }

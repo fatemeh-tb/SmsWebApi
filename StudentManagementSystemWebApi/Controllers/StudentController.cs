@@ -60,7 +60,11 @@ namespace StudentManagementSystemWebApi.Controllers
 			return _studentDataService.AddCourseStudent(courseStudentDto);
 		}
 
-
+		[HttpDelete("/deleteCourseStudent/{id1}/{id2}")]
+		public int DeleteRelation(long id1, long id2)
+		{
+			return _studentDataService.DeleteRelation(id1, id2);
+		}
 		
 	}
 }
