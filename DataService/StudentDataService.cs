@@ -24,7 +24,6 @@ public class StudentDataService
 		_smsContext.Database.EnsureCreated();
 		_studentRepository = new StudentRepository();
 		_environment = environment;
-
 	}
 	public int  AddStudent(StudentDto model)
 	{

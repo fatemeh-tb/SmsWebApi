@@ -41,7 +41,6 @@
       <Folder Include="Areas\CourseController\Data" />
       <Folder Include="Areas\CourseController\Models" />
       <Folder Include="Areas\CourseController\Views" />
-      <Folder Include="Controllers" />
       <Folder Include="wwwroot\Uploads\profilepics" />
     </ItemGroup>
 

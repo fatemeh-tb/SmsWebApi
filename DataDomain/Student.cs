@@ -12,4 +12,5 @@ public class Student
 	public string? Gender { get; set; }
   public string? imagePath { get; set; }
 public virtual ICollection<CourseStudent>? CourseStudent { get; set; }
+public virtual ICollection<Scores>? Scores { get; set; }
 }

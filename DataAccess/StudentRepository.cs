@@ -1,8 +1,6 @@
 ﻿using Context;
 using DataDomain;
 using DataDomain.External;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess;
 
@@ -29,6 +27,14 @@ public class StudentRepository
 				ParentName = s.ParentName,
 				Gender = s.Gender,
 				imagePath = s.imagePath,
+				Scores = (ICollection<Scores>)s.Scores.Select(p => new Scores()
+				{
+					Score1 = p.Score1,
+					Score2 = p.Score2,
+					Score3 = p.Score3,
+					Score4 = p.Score4,
+					FinalScore = p.FinalScore
+				}),
 				CourseStudent = (ICollection<CourseStudent>)s.CourseStudent.Select(p => new CourseStudent()
 				{
 					CoursesId = p.CoursesId,
@@ -77,13 +83,13 @@ public class StudentRepository
 
 		return _smsContext.SaveChanges() > 0;
 	}
-
-
+	
 	public int createCourseStudent(CourseStudent courseStudent)
 	{
 		_smsContext.CourseStudents.Add(courseStudent);
 		return _smsContext.SaveChanges();
 	}
+
 
 	public int RemoveCourseStudentRelations(CourseStudent courseStudent)
 	{
@@ -91,5 +97,4 @@ public class StudentRepository
 		_smsContext.Remove(courseStudent);
 		return _smsContext.SaveChanges();
 	}
-	
 }

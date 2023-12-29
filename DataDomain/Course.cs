@@ -6,4 +6,5 @@ public class Course
 	public string Title { get; set; }
 	public string CourseCode { get; set; }
 	public virtual ICollection<CourseStudent> CourseStudent { get; set; }
+	public virtual List<Scores> Scores { get; set; }
 }

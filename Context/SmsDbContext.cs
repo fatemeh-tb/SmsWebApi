@@ -9,6 +9,7 @@ public class SmsDbContext : DbContext
 	public DbSet<Student> Students { get; set; }
 	public DbSet<Course> Courses { get; set; }
 	public DbSet<CourseStudent> CourseStudents { get; set; }
+	public DbSet<Scores> Scores { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
@@ -16,16 +17,26 @@ public class SmsDbContext : DbContext
 		modelBuilder.Entity<Course>(entity => { entity.ToTable("Courses"); });
 
 		modelBuilder.Entity<CourseStudent>()
-			.HasKey(bc => new { bc.StudentsId, bc.CoursesId });  
+			.HasKey(bc => new { bc.StudentsId, bc.CoursesId });
 		modelBuilder.Entity<CourseStudent>()
 			.HasOne(bc => bc.Student)
 			.WithMany(b => b.CourseStudent)
-			.HasForeignKey(bc => bc.StudentsId);  
+			.HasForeignKey(bc => bc.StudentsId);
 		modelBuilder.Entity<CourseStudent>()
 			.HasOne(bc => bc.Course)
 			.WithMany(c => c.CourseStudent)
 			.HasForeignKey(bc => bc.CoursesId);
 		
+		
+		modelBuilder.Entity<Scores>(t =>
+		{
+			t.HasOne(g => g.Student)
+				.WithMany(t => t.Scores);
+
+			t.HasOne(g => g.Course)
+				.WithMany(t => t.Scores);
+		});
+
 		Student_builder(modelBuilder);
 	}
 
