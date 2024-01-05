@@ -36,9 +36,15 @@ public class StudentDataService
 		student.NationalCode = model.NationalCode;
 		student.Gender = model.Gender;
 		student.imagePath = model.imagePath;
+		
+		Console.WriteLine(student.imagePath);
+		Console.WriteLine(model.imagePath);
 
+		if (student.imagePath != "string" & student.imagePath != "undefiend" & student.imagePath != null)
+		{
 			String[] substrings = student.imagePath.Split(',');
 
+			
 			string imgData = substrings[1];
 			byte[] imageBytes = Convert.FromBase64String(imgData);
 			string imageName = student.NationalCode + ".jpg";
@@ -46,6 +52,11 @@ public class StudentDataService
 			var path = Path.Combine(_environment.WebRootPath, "Uploads/profilepics", imageName);
 
 			File.WriteAllBytes(path, imageBytes);	
+		}
+		else
+		{
+			Console.WriteLine("add");
+		}
 
 
 		return _studentRepository.CreateStudent(student);

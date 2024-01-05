@@ -25,11 +25,23 @@ namespace StudentManagementSystemWebApi.Controllers
 		{
 			return _scoreDataService.AddScores(scoreDto);
 		}
+		
+		[HttpPut]
+		public int UpdateScores(ScoreDto scoreDto)
+		{
+			return _scoreDataService.UpdateScores(scoreDto);
+		}
 
 		[HttpGet("/scores")]
 		public IEnumerable<Scores> GetScores()
 		{
 			return _scoreDataService.GetScores();
+		}
+		
+		[HttpGet("/scores/{id}")]
+		public Scores GetScorebyId(long id)
+		{
+			return _scoreDataService.GetScoresById(id);
 		}
 	}
 }

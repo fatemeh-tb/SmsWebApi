@@ -35,15 +35,22 @@ public class ScoreDataService
 		}
 		else
 		{
-			var scoreToUpdate = _smsContext.Scores.FirstOrDefault(s => s.Id == scoresDto.Id);
-			if (scoreToUpdate is not null)
-			{
-				scoreToUpdate.Score1 = scoresDto.Score1;
-				scoreToUpdate.Score2 = scoresDto.Score2;
-				scoreToUpdate.Score3 = scoresDto.Score3;
-				scoreToUpdate.Score4 = scoresDto.Score4;
-				scoreToUpdate.FinalScore = scoresDto.FinalScore;
-			}
+			Console.WriteLine("Error");
+		}
+
+		return _smsContext.SaveChanges();
+	}
+
+	public int UpdateScores(ScoreDto scoresDto)
+	{
+		var scoreToUpdate = _smsContext.Scores.FirstOrDefault(s => s.Id == scoresDto.Id);
+		if (scoreToUpdate is not null)
+		{
+			scoreToUpdate.Score1 = scoresDto.Score1;
+			scoreToUpdate.Score2 = scoresDto.Score2;
+			scoreToUpdate.Score3 = scoresDto.Score3;
+			scoreToUpdate.Score4 = scoresDto.Score4;
+			scoreToUpdate.FinalScore = scoresDto.FinalScore;
 		}
 
 		return _smsContext.SaveChanges();
@@ -66,5 +73,24 @@ public class ScoreDataService
 				StudentId = s.StudentId,
 				CourseId = s.CourseId
 			}).ToList();
+	}
+
+	public Scores GetScoresById(long id)
+	{
+		return _smsContext
+			.Scores
+			.Select(s => new Scores()
+			{
+				Id = s.Id,
+				Score1 = s.Score1,
+				Score2 = s.Score2,
+				Score3 = s.Score3,
+				Score4 = s.Score4,
+				FinalScore = s.FinalScore,
+				Student = s.Student,
+				Course = s.Course,
+				StudentId = s.StudentId,
+				CourseId = s.CourseId
+			}).SingleOrDefault(i => i.Id == id);
 	}
 }
