@@ -37,8 +37,6 @@ public class StudentDataService
 		student.Gender = model.Gender;
 		student.imagePath = model.imagePath;
 		
-		Console.WriteLine(student.imagePath);
-		Console.WriteLine(model.imagePath);
 
 		if (student.imagePath != "string" & student.imagePath != "undefiend" & student.imagePath != null)
 		{
@@ -49,7 +47,7 @@ public class StudentDataService
 			byte[] imageBytes = Convert.FromBase64String(imgData);
 			string imageName = student.NationalCode + ".jpg";
 		
-			var path = Path.Combine(_environment.WebRootPath, "Uploads/profilepics", imageName);
+			var path = Path.Combine(_environment.WebRootPath, "assets/profileImg", imageName);
 
 			File.WriteAllBytes(path, imageBytes);	
 		}

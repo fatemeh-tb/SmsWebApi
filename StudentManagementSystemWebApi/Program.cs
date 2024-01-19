@@ -29,6 +29,19 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
+app.Use(async (Context, next) =>
+{
+	await next();
+	if (Context.Response.StatusCode == 404 && !Path.HasExtension(Context.Request.Path.Value))
+	{
+		Context.Request.Path = "/index.html";
+		await next();
+	}
+});
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
