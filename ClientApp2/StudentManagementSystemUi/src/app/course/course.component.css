@@ -1,0 +1,58 @@
+.header h1 {
+  text-align: right;
+  font-size: 18px;
+  font-family: "vazir", "arial", sans-serif;
+  color: #34495e;
+  margin: 0;
+}
+
+.loadingIcon {
+  text-align: center;
+}
+
+.card {
+  margin-top: 30px;
+  border-top: 3px solid #3aafa5a3;
+  border-radius: 20px;
+}
+
+.course-card {
+  margin-top: 55px;
+}
+
+.card-title {
+  display: flex;
+  font-size: 15px;
+  padding-bottom: 10px;
+  color: #34495e;
+}
+
+.close-icon {
+  flex: 1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.details-btn {
+  background-color: #ff9000;
+  color: #fff;
+  font-size: 10px;
+  margin-top: 20px;
+  float: left;
+}
+
+.submit-button {
+  border-top: 2px solid #cacaca;
+}
+
+.icon {
+  padding: 3px 0 0px 8px;
+  color: #a2a2a2;
+  font-size: 14px;
+}
+
+.code {
+  color: #a2a2a2;
+  font-size: 12px;
+  padding-left: 10px;
+}

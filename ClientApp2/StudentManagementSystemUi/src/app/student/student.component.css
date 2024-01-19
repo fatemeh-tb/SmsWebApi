@@ -1,0 +1,22 @@
+.main-table {
+  margin: 50px auto;
+}
+
+mat-header-cell {
+  direction: rtl;
+  padding-right: 0 !important;
+}
+
+mat-cell {
+  direction: rtl;
+  color: #464646;
+}
+
+mat-row:hover {
+  background-color: #e1e1e1;
+}
+
+.loadingIcon {
+  background-color: #fff;
+  text-align: center;
+}

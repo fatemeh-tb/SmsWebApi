@@ -1,0 +1,89 @@
+.add-student {
+  width: 90%;
+  background-color: #fff;
+  margin-top: 70px;
+  border-radius: 6px;
+  border-top: 3px solid #3AAFA6;
+  /* width: 600px; */
+}
+
+.close-btn {
+  width: 35px;
+  margin-left: 10px;
+  background-color: #c1121f;
+  color: #fff;
+  font-size: 10px;
+}
+
+.submit-btn {
+  width: 130px;
+  margin-left: 30px;
+  background-color: #3AAFA6;
+  color: #fff;
+  font-size: 15px;
+}
+
+.submit-btn:disabled {
+  background-color: #3aafa5a3;
+  color: #fff;
+}
+
+.header {
+  padding-bottom: 15px;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  text-align: right;
+  font-size: 18px;
+  font-family: "vazir", "arial", sans-serif;
+  color: #34495E;
+  padding: 24px 24px 0 0;
+  margin: 0;
+}
+
+.text-center {
+  border-top: 1px dashed #cacaca;
+  margin-top: 30px;
+  padding: 20px 0 20px 0;
+}
+
+.add-items {
+  padding: 24px;
+}
+
+
+mat-toolbar {
+  height: 30px;
+  background-color: inherit;
+  font-family: vazir;
+  font-size: 1rem;
+  padding-bottom: 30px;
+}
+
+mat-form-field {
+  width: 200px;
+  margin: 0 0 25px 20px;
+}
+
+mat-label {
+  font-size: 12px;
+}
+
+@media screen and (max-width: 1199.98px) {
+  mat-form-field {
+    width: 230px;
+  }
+}
+
+@media screen and (max-width: 991.98px) {
+  mat-form-field {
+    width: 180px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  td {
+    display: block;
+  }
+}

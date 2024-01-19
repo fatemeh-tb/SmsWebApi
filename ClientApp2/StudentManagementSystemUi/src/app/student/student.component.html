@@ -1,0 +1,56 @@
+<div class="container main-table" style="overflow:auto;">
+    <div class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort style="padding: 20px;">
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <ng-container>
+                <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+            </ng-container>
+            <ng-container matColumnDef="index">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>ردیف</mat-header-cell>
+                <mat-cell *matCellDef="let i=index">{{i + 1}}</mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>نام</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.fName}}</mat-cell>
+            </ng-container>
+
+
+            <ng-container matColumnDef="lName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>نام خانوادگی</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.lName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="nationalCode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>کد ملی</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.nationalCode}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="details">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button [routerLink]="[element.id, element.fName + '%' + element.lName]">
+                        .....
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="warn" (click)="removeHandler(element.id)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[10, 30, 50]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+
+        <div *ngIf="isLoading" class="loadingIcon">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </div>
+</div>

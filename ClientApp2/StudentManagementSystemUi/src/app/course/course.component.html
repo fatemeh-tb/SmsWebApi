@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row course-card">
+        <div class="header">
+            <h1>لیست کلاس ها</h1>
+        </div>
+        <div class="col-sm-4" *ngFor="let item of course">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <p> کلاس <strong>{{item.title}}</strong> </p>
+                        <mat-icon class="close-icon" color="warn"  (click)="removeHandler(item.id)">
+                            close
+                        </mat-icon>
+                    </div>
+                    <div class="submit-button">
+                        <div style="display: flex; margin-top: 20px;">
+                            <mat-icon class="icon">
+                                workspaces_outline
+                            </mat-icon>
+                            <span class="code">
+                                <p>کد کلاس :</p>
+                            </span>
+                            <span style="color: #464646; font-size: 12px;">
+                                <p>{{item.courseCode}}</p>
+                            </span>
+                        </div>
+                        <a href="#" class="btn details-btn" [routerLink]="[item.id, item.courseCode]">مشاهده</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isLoading" class="loadingIcon">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </div>
+</div>

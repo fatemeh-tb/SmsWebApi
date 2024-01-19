@@ -1,0 +1,40 @@
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="add-course" col-md-3>
+
+        <div class="header">
+            <h1>افزودن کلاس جدید</h1>
+        </div>
+
+        <div class="add-items" dir=rtl>
+            <form [formGroup]="dataShare.formGroup" (ngSubmit)="onSubmit(dataShare.formGroup.value)">
+                <div class="form-row">
+                    <mat-form-field class="last" appearance="outline">
+                        <mat-label> عنوان </mat-label>
+                        <input matInput type="text" formControlName="title">
+                        <em style="color: red;"
+                            *ngIf="dataShare.validateControl('title') && dataShare.hasError('title', 'required')">فیلد
+                            عنوان
+                            نمی تواند خالی باشد</em>
+                    </mat-form-field>
+                    <mat-form-field class="last" appearance="outline">
+                        <mat-label> کد کلاس </mat-label>
+                        <input matInput type="text" formControlName="courseCode">
+                        <em style="color: red;"
+                            *ngIf="dataShare.validateControl('courseCode') && dataShare.hasError('courseCode', 'pattern')">کد
+                            کلاس را را به صورت
+                            عدد وارد کنید </em>
+                        <em style="color: red;"
+                            *ngIf="dataShare.validateControl('courseCode') && dataShare.hasError('courseCode', 'required')">فیلد
+                            کد کلاس نمی
+                            تواند خالی باشد</em>
+                    </mat-form-field>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn submit-btn" mat-raised-button type="submit"
+                        [disabled]="dataShare.formGroup.invalid">افزودن</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

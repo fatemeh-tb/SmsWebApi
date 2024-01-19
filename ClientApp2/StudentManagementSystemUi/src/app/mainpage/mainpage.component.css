@@ -1,0 +1,26 @@
+.feature {
+  width: 140px;
+  height: 100px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 10px;
+  box-shadow: #c8c8c8;
+  text-align: center;
+  cursor: pointer;
+}
+
+.feature p {
+  padding-top: 8px;
+  font-size: 12px;
+}
+
+.main-icon {
+  width: 70px;
+  height: 70px;
+  transition: 800ms;
+}
+
+.main-icon:hover {
+  transform: scale(1.2);
+  transition: 800ms;
+}

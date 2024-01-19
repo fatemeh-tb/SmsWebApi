@@ -1,0 +1,24 @@
+.title {
+  padding: 20px;
+  text-align: center;
+  background-color: #dceaf6;
+}
+
+.student-list {
+  padding: 0;
+  border: 1px solid #3aafa6;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.add-student {
+  width: 75%;
+  margin-top: 70px;
+  border-radius: 6px;
+}
+
+.profile-img {
+  border-radius: 50%;
+  margin-left: 35px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}

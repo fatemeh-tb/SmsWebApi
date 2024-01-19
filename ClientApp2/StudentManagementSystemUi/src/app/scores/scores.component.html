@@ -1,0 +1,143 @@
+<div class="container">
+    <div class="addScore" *ngIf="!isScoreAdded">
+        <div class="header">
+            <h2>هیچ نمره ای ثبت نشده !</h2>
+        </div>
+        <div class="addScore-btn" data-bs-toggle="modal" data-bs-target="#addScoreModal">افزودن
+            نمرات</div>
+    </div>
+
+    <div *ngIf="isScoreAdded">
+        <table class="table table-bordered border-secondary" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th *ngFor="let student of studentInfo;" scope="col" colspan="2">
+                        <span>
+                            نام و نام
+                            خانوادگی:
+                            {{student.fName}} {{student.lName}}
+                        </span>
+                        <span style="float: left;">
+                            نام کلاس: {{courseInfo}}
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of studentScore">
+                <tr>
+                    <td>{{item.score1}}</td>
+                    <td>Score 1</td>
+                </tr>
+                <tr>
+                    <td>{{item.score2}}</td>
+                    <td>Score 2</td>
+                </tr>
+                <tr>
+                    <td>{{item.score3}}</td>
+                    <td>Score 3</td>
+                </tr>
+                <tr>
+                    <td>{{item.score4}}</td>
+                    <td>Score 4</td>
+                </tr>
+                <tr>
+                    <td>{{item.finalScore}}</td>
+                    <td>Final Score</td>
+                </tr>
+            </tbody>
+        </table>
+        <div (click)="editHandler()" class="addScore-btn" data-bs-toggle="modal" data-bs-target="#editModal">
+            ویرایش نمرات</div>
+    </div>
+    <!-- Edit Score Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="editModal">ویرایش نمرات فراگیر</p>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+                        <div class="form-row">
+                            <mat-form-field class="last" appearance="outline" style="display: none;">
+                                <mat-label> id </mat-label>
+                                <input matInput type="text" class="form-control" formControlName="id" readonly>
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 1 </mat-label>
+                                <input matInput type="text" formControlName="score1">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 2 </mat-label>
+                                <input matInput type="text" formControlName="score2">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 3 </mat-label>
+                                <input matInput type="text" formControlName="score3">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 4 </mat-label>
+                                <input matInput type="text" formControlName="score4">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Final Score </mat-label>
+                                <input matInput type="text" formControlName="finalScore">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn submit-btn" mat-raised-button [disabled]="formGroup.invalid"
+                                type="submit">اعمال تغییرات</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+    </div>
+
+
+
+    <!-- Add Score Modal -->
+    <div class="modal fade" id="addScoreModal" tabindex="-1" aria-labelledby="addScoreModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="addScoreModal">ثبت نمرات فراگیر</p>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+                        <div class="form-row">
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 1 </mat-label>
+                                <input matInput type="text" formControlName="score1">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 2 </mat-label>
+                                <input matInput type="text" formControlName="score2">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 3 </mat-label>
+                                <input matInput type="text" formControlName="score3">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Score 4 </mat-label>
+                                <input matInput type="text" formControlName="score4">
+                            </mat-form-field>
+                            <mat-form-field class="last" appearance="outline">
+                                <mat-label> Final Score </mat-label>
+                                <input matInput type="text" formControlName="finalScore">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn submit-btn" mat-raised-button [disabled]="formGroup.invalid"
+                                type="submit">ثبت </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->

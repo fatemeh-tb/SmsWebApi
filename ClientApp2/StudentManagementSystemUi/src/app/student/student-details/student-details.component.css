@@ -1,0 +1,124 @@
+.container {
+  background: #fff;
+  width: 90%;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 20px;
+  color: #374151;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #d7dbdf;
+  font-family: "vazir", "arial", sans-serif;
+}
+
+.form-group {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  font-size: 14px;
+}
+
+.registered-course {
+  padding-top: 30px;
+  margin-right: 60px;
+}
+
+.registered-course p {
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.registered-course p:hover {
+  color: #5850eb;
+}
+
+.submit-btn {
+  font-weight: bold;
+  line-height: 19px;
+  background: #5850eb;
+  border: none;
+  padding: 15px 25px;
+  border-radius: 6px;
+  color: white;
+  width: 100%;
+  margin-top: 24px;
+}
+.submit-btn:hover {
+  background: #6e67ee;
+}
+.submit-btn:focus {
+  background: #4239e8;
+}
+.submit-btn:disabled {
+  background: #6e67eeb5;
+}
+
+#registeredCourseModal {
+  font-size: 1rem;
+  font-weight: 500;
+}
+#scoresmodal {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.modal-lg {
+  max-width: 80% !important;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    margin: 2rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    max-width: 32rem;
+    padding: 2rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    max-width: 80%;
+    width: 100%;
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+  }
+
+  .parent-group {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .national-group {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .textarea-group {
+    grid-column: 3;
+    grid-row: span 2;
+    margin-right: 2rem;
+  }
+
+  .button-container {
+    text-align: right;
+  }
+
+  .button {
+    width: auto;
+  }
+}

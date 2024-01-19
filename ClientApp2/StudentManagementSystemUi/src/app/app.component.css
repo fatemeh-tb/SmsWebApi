@@ -1,0 +1,38 @@
+.main-header {
+  text-align: center;
+  background-color: #fff;
+  /* background-color: #1891AC; */
+  /* color: #fff; */
+  height: 65px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-header p {
+  position: relative;
+  font-family: vazir;
+  font-size: 15px;
+  padding-top: 20px;
+  cursor: pointer;
+}
+
+.line1 {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.line2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.Logo {
+  stroke: #ff9000;
+  fill: none;
+}
+
+@media screen and (max-width: 667.98px) {
+  .Logo {
+   display: none;
+  }
+}

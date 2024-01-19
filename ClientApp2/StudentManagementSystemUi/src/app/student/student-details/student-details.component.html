@@ -1,0 +1,153 @@
+<div class="container">
+
+    <h1 class="title">اطلاعات فراگیر</h1>
+
+    <form [formGroup]="dataShare.formGroup" (ngSubmit)="onSubmit(dataShare.formGroup.value)">
+        <div class="grid" *ngFor="let item of studentDetails">
+            <div class="form-group a" style="display: none;">
+                <label for="fName">id</label>
+                <input id="inputId" type="number" class="form-control" formControlName="id" readonly>
+            </div>
+            <div class="form-group a">
+                <label for="fName">نام</label>
+                <input id="inputFName" type="text" class="form-control" formControlName="fName" placeholder="نام">
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('fName') && dataShare.hasError('fName', 'required')">وارد
+                    کردن این
+                    فیلد ضروری است</em>
+            </div>
+
+            <div class="form-group b">
+                <label for="lName">نام خانوادگی</label>
+                <input type="text" class="form-control" id="inputLName" formControlName="lName"
+                    placeholder="نام خانوادگی">
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('lName') && dataShare.hasError('lName', 'required')">وارد
+                    کردن این
+                    فیلد ضروری است</em>
+            </div>
+
+            <div class="form-group parent-group">
+                <label for="parentName">نام پدر </label>
+                <input type="text" class="form-control" id="inputParentName" formControlName="parentName"
+                    placeholder="نام پدر">
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('parentName') && dataShare.hasError('parentName', 'required')">وارد
+                    کردن این
+                    فیلد ضروری است</em>
+            </div>
+
+            <div class="form-group national-group">
+                <label for="nationalCode">کد ملی</label>
+                <input type="text" class="form-control" id="inputNationalCode" formControlName="nationalCode"
+                    [maxLength]="10">
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('nationalCode') && dataShare.hasError('nationalCode', 'pattern')">کد
+                    ملی را به صورت
+                    عدد 10 رقمی وارد کند</em>
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('nationalCode') && dataShare.hasError('nationalCode', 'required')">وارد
+                    کردن این
+                    فیلد ضروری است</em>
+            </div>
+
+            <div class="form-group textarea-group">
+                <input type="text" formControlName="imagePath" style="display: none;">
+                <img src="{{item.imagePath}}" alt="{{item.fName}}" width="140px" height="160px">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">شماره تماس </label>
+                <input type="text" class="form-control" formControlName="phone" id="inputPhone">
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('phone') && dataShare.hasError('phone', 'pattern')">شماره
+                    تماس را
+                    به صورت
+                    عدد وارد کنید </em>
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('phone') && dataShare.hasError('phone', 'required')">وارد
+                    کردن این
+                    فیلد ضروری است</em>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">جنسیت</label>
+                <select formControlName="gender" id="inputGender" class="form-control" [value]="item.gender">
+                    <option>زن</option>
+                    <option>مرد</option>
+                </select>
+                <em style="color: red;"
+                    *ngIf="dataShare.validateControl('gender') && dataShare.hasError('gender', 'required')">وارد
+                    کردن این
+                    فیلد ضروری است</em>
+            </div>
+
+            <div class="form-group registered-course" data-bs-toggle="modal" data-bs-target="#registeredCourseModal"
+                (click)="showRegisteredCourses()">
+                <p>کلاس هــای ثــبــت نــام شــده</p>
+            </div>
+
+            <!-- Course Modal -->
+            <div class="modal fade" id="registeredCourseModal" tabindex="-1" aria-labelledby="registeredCourseModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p class="modal-title" id="registeredCourseModal">لیست کلاس های ثبت نام شده</p>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">عنوان</th>
+                                        <th scope="col">کد کلاس</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of registeredCourse">
+                                        <td> {{item.title}}
+                                        </td>
+                                        <td>{{item.courseCode}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-label>لیست کلاس ها</mat-label>
+                                <select matNativeControl #selecteditem>
+                                    <option selected></option>
+                                    <option [value]="courses.id" *ngFor="let courses of course">{{courses.title}}
+                                    </option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+                        <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="isCourseExist">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16"
+                                role="img" aria-label="Warning:">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <div style="font-weight: 700;">
+                                قبلا در این کلاس ثبت نام کرده اید.
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary"
+                                (click)="addNewCourse(item.id, selecteditem.value)"
+                                [disabled]="selecteditem.value == ''">افزودن
+                                کلاس جدید</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">انصراف</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+        </div>
+        <div class="button-container">
+            <button class="button submit-btn" type="submit" [disabled]="dataShare.formGroup.invalid">ویرایش
+                اطلاعات</button>
+        </div>
+    </form>
+</div>

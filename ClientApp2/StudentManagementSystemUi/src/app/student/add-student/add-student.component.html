@@ -1,0 +1,64 @@
+<div class="container  d-flex align-items-center justify-content-center">
+    <div class="add-student" col-md-3>
+        <div class="header">
+            <h1>افزودن دانشجوی جدید</h1>
+        </div>
+
+        <div class="add-items" dir=rtl>
+            <form [formGroup]="dataShare.formGroup" (ngSubmit)="onSubmit(dataShare.formGroup.value)">
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label> نام </mat-label>
+                        <input matInput type="text" formControlName="fName" required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label> نام خانوادگی</mat-label>
+                        <input matInput type="text" formControlName="lName">
+                    </mat-form-field>
+                </div>
+                <div class="form-row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>نام پدر</mat-label>
+                        <input matInput type="text" formControlName="parentName">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>کد ملی</mat-label>
+                        <input matInput type="text" formControlName="nationalCode" [maxLength]="10">
+                        <em style="color: red;"
+                            *ngIf="dataShare.validateControl('nationalCode') && dataShare.hasError('nationalCode', 'pattern')">کد
+                            ملی را به صورت
+                            عدد 10 رقمی وارد کند</em>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>شماره تماس</mat-label>
+                        <input matInput type="text" formControlName="phone">
+                        <em style="color: red;"
+                            *ngIf="dataShare.validateControl('phone') && dataShare.hasError('phone', 'pattern')">شماره
+                            تماس
+                            را به صورت
+                            عدد وارد کنید </em>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>جنسیت</mat-label>
+                        <select matNativeControl formControlName="gender">
+                            <option>زن</option>
+                            <option>مرد</option>
+                        </select>
+                    </mat-form-field>
+                    <div style="font-size: 12px;">
+                        <label style="padding-left: 5px;">تصویر</label>
+                        <input type="file" formControlName="imagePath" (change)="onChange($event)" accept="image/*">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn submit-btn" mat-raised-button type="submit"
+                        [disabled]="dataShare.formGroup.invalid">افزودن</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
